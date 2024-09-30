@@ -19,7 +19,7 @@ bool isPrime(int num) {
 }
 
 bool isPowerOfTwo(int num) {
-    return (num > 0) && !(num & (num - 1)) && (num != 1);
+    return (num > 0) && !(num & (num - 1));
 }
 
 int main(int argc, char* argv[]) {
@@ -63,13 +63,13 @@ int main(int argc, char* argv[]) {
     }
     double average = static_cast<double>(sum) / N;
     if(isHuman) cout << "Bсе числа последовательности, являющиеся простыми числами (в том же порядке): " << endl;
-    for(int i = 0; i < primeNumbers.length(); i++){
-        int num = 0;
-        for (char c : primeNumbers) {
-            if (c >= '0' && c <= '9') {
-                num = num * 10 + (c - '0');
+    int num = 0;
+    for (char c : primeNumbers) {
+        if (c >= '0' && c <= '9') {
+            num = num * 10 + (c - '0');
+            cout << num << endl;
+            num = 0;
         }
-        cout << primeNumbers[i] << endl;
     }
     if(isHuman) cout << "Среднее арифметическое значение: " << endl;
     cout << fixed << setprecision(2) << average << endl;
