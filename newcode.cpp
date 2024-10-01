@@ -2,7 +2,6 @@
 #include <iomanip>
 #include <cmath>
 #include <cstring>
-#include <string>
 
 using namespace std;
 
@@ -19,7 +18,7 @@ bool isPrime(int num) {
 }
 
 bool isPowerOfTwo(int num) {
-    return (num > 0) && !(num & (num - 1));
+    return ((num > 0) && (num & (num - 1)) == 0);
 }
 
 int main(int argc, char* argv[]) {
@@ -44,7 +43,7 @@ int main(int argc, char* argv[]) {
         if(isHuman) cout << "Введите число " << i+1 << ". ";
         cin >> a;
         if (isPrime(a)) {
-            primeNumbers += to_string(a);
+            primeNumbers += to_string(a) + "\n";
         }
         sum += a;
         if (a > maxNum) maxNum = a;
@@ -62,24 +61,27 @@ int main(int argc, char* argv[]) {
         prev1 = a;
     }
     double average = static_cast<double>(sum) / N;
-    if(isHuman) cout << "Bсе числа последовательности, являющиеся простыми числами (в том же порядке): " << endl;
-    int num = 0;
-    for (char c : primeNumbers) {
-        if (c >= '0' && c <= '9') {
-            num = num * 10 + (c - '0');
-            cout << num << endl;
-            num = 0;
-        }
+    if(isHuman){
+        cout << "Bсе числа последовательности, являющиеся простыми числами (в том же порядке): " << endl;
+        cout << primeNumbers;
+        cout << "Среднее арифметическое значение: " << endl;
+        cout << fixed << setprecision(2) << average << endl;
+        cout << "Размах ряда: " << endl;
+        cout << (maxNum - minNum) << endl;
+        cout << "Количество чисел, кратных числу 5: " << endl;
+        cout << countMultiplesOfFive << endl;
+        cout << "Количество чисел, являющихся степенью двойки:" << endl;
+        cout << countPowersOfTwo << endl;
+        cout << "Kоличество чисел, превышающих сумму двух предшествующих членов последовательности: " << endl;
+        cout << countGreaterThanSumOfTwo << endl;
     }
-    if(isHuman) cout << "Среднее арифметическое значение: " << endl;
-    cout << fixed << setprecision(2) << average << endl;
-    if(isHuman) cout << "Размах ряда: " << endl;
-    cout << (maxNum - minNum) << endl;
-    if(isHuman) cout << "Количество чисел, кратных числу 5: " << endl;
-    cout << countMultiplesOfFive << endl;
-    if(isHuman) cout << "Количество чисел, являющихся степенью двойки:" << endl;
-    cout << countPowersOfTwo << endl;
-    if(isHuman) cout << "Kоличество чисел, превышающих сумму двух предшествующих членов последовательности: " << endl;
-    cout << countGreaterThanSumOfTwo << endl;
+    else{
+        cout << primeNumbers << endl;
+        cout << fixed << setprecision(2) << average << endl;
+        cout << (maxNum - minNum) << endl;
+        cout << countMultiplesOfFive << endl;
+        cout << countPowersOfTwo << endl;
+        cout << countGreaterThanSumOfTwo << endl;
+    }
     return 0;
 }
