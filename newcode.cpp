@@ -44,7 +44,12 @@ int main(int argc, char* argv[]) {
         if(isHuman) cout << "Введите число " << i+1 << ". ";
         cin >> a;
         if (isPrime(a)) {
-            primeNumbers += to_string(a) + "\n";
+            if(isHuman){
+                cout << "Число: " << a << " - простое" << endl;
+            }
+            else{
+                cout << a << endl;
+            }
         }
         sum += a;
         if (a > maxNum) maxNum = a;
@@ -63,8 +68,6 @@ int main(int argc, char* argv[]) {
     }
     double average = static_cast<double>(sum) / N;
     if(isHuman){
-        cout << "Bсе числа последовательности, являющиеся простыми числами (в том же порядке): " << endl;
-        cout << primeNumbers;
         cout << "Среднее арифметическое значение: " << endl;
         cout << fixed << setprecision(2) << average << endl;
         cout << "Размах ряда: " << endl;
@@ -77,7 +80,6 @@ int main(int argc, char* argv[]) {
         cout << countGreaterThanSumOfTwo << endl;
     }
     else{
-        cout << primeNumbers << endl;
         cout << fixed << setprecision(2) << average << endl;
         cout << (maxNum - minNum) << endl;
         cout << countMultiplesOfFive << endl;
